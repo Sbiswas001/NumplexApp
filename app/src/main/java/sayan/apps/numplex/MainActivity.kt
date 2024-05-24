@@ -63,12 +63,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         when(v?.id){
             R.id.show_properties ->{
+                fun isInteger(s: String): Boolean {
+                    return try {
+                        s.toInt()
+                        true
+                    } catch (e: NumberFormatException) {
+                        false
+                    }
+                }
+                if(!isInteger(input.text.toString())) {
+                    input.error = "Number should be less than 999999"
+                    return
+                }
                 if (input.text.toString().isEmpty()) {
                     input.error = "Please enter a number"
                     return
                 }
                 if (input.text.toString().toInt() >999999) {
                     input.error = "Number should be less than 999999"
+                    return
+                }
+                if (input.text.toString().toInt() <=0) {
+                    input.error = "Number should be greater than 0"
                     return
                 }
                 num = input.text.toString().toInt()
