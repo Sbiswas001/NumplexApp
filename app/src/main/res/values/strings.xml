@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Numplex</string>
+    <string name="show_properties">Show Properties</string>
+    <string name="clear">CLEAR</string>
+    <string name="random">Random</string>
+    <string name="enter_a_number">Enter a number</string>
 </resources>

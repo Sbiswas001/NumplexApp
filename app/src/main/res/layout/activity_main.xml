@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -11,13 +10,78 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/a"
+        android:id="@+id/input_number"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_margin="25dp"
+        android:autofillHints="number"
         android:background="@drawable/margin_shape"
-        android:hint="Enter a number"
-        android:textColorHint="#939090"
-        android:textSize="25sp"
+        android:hint="@string/enter_a_number"
+        android:inputType="numberDecimal"
+        android:textColorHint="#575454"
+        android:textSize="25sp">
 
+    </EditText>
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/show_properties"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:backgroundTint="#028408"
+            android:textColor="@color/white"
+            android:text="@string/show_properties" />
+
+        <Button
+            android:id="@+id/clear_properties"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:backgroundTint="#B80000"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:text="@string/clear" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:id="@+id/random_properties"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#9C27B0"
+            android:text="@string/random" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:id="@+id/answer"
+            android:layout_margin="5dp"
+            android:textColor="@color/black"
+            android:text="">
+        </TextView>
+    </ScrollView>
 </LinearLayout>
