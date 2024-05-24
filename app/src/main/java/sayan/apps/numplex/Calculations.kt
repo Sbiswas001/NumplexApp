@@ -1,6 +1,7 @@
 package sayan.apps.numplex
 
 import java.util.Locale
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 fun isEven(number : Int) = number % 2 == 0
@@ -92,9 +93,9 @@ fun factors(n: Int): List<Int> {
     return factors
 }
 
-fun isNivenNumber(number: Int): Boolean = if(number % digitSum(number) == 0) true else false
+fun isNivenNumber(number: Int): Boolean = number % digitSum(number) == 0
 
-fun isEmirpNumber(number: Int): Boolean = if(isPrimeNumber(number)) (if(isPrimeNumber(reverse(number))) true else false) else false
+fun isEmirpNumber(number: Int): Boolean = if(isPrimeNumber(number)) (isPrimeNumber(reverse(number))) else false
 
 fun isAbundantNumber(number : Int): Int = (factors(number).toSet().sum()-number) - number
 
@@ -116,7 +117,7 @@ fun isDisariumNumber(number: Int): Boolean {
     var position = 1
     while (num > 0) {
         val digit = num % 10
-        sum += Math.pow(digit.toDouble(), position.toDouble()).toInt()
+        sum += digit.toDouble().pow(position.toDouble()).toInt()
         position++
         num /= 10
     }
@@ -207,7 +208,7 @@ fun isArmstrongNumber(number: Int): Boolean {
     var sum = 0
     while (num > 0) {
         val digit = num % 10
-        sum += Math.pow(digit.toDouble(), numberOfDigits.toDouble()).toInt()
+        sum += digit.toDouble().pow(numberOfDigits.toDouble()).toInt()
         num /= 10
     }
     return sum == number
@@ -235,13 +236,14 @@ fun isCircularPrimeNumber(number: Int): Boolean {
 
 fun isFermatNumber(number: Int): Boolean {
     if (number <= 0) return false
-    var k = 0
-    var fermatNumber = 1
-    while (fermatNumber < number) {
-        k++
-        fermatNumber = (1 shl (1 shl k)) + 1
+    if (number == 3 || number == 5) return true
+
+    var s = 4
+    val m = (1 shl number) - 1 // Equivalent to 2^number - 1
+    repeat(number - 2) {
+        s = (s * s - 2) % m
     }
-    return fermatNumber == number
+    return s == 0
 }
 
 fun isUglyNumber(number: Int): Boolean {

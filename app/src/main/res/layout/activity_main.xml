@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@drawable/background_design"
+    android:background="@drawable/background_image"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/input_number"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_margin="25dp"
+        android:layout_margin="20dp"
         android:autofillHints="number"
         android:background="@drawable/margin_shape"
         android:hint="@string/enter_a_number"
         android:inputType="numberDecimal"
         android:textColorHint="#575454"
+        android:textColor="@color/black"
         android:textSize="25sp">
-
     </EditText>
 
     <LinearLayout
@@ -33,7 +33,7 @@
         <Button
             android:id="@+id/show_properties"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="18sp"
@@ -46,7 +46,7 @@
         <Button
             android:id="@+id/clear_properties"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="10dp"
             android:textSize="18sp"
@@ -57,19 +57,16 @@
             android:text="@string/clear" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/random_properties"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center">
-        <Button
-            android:id="@+id/random_properties"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#9C27B0"
-            android:text="@string/random" />
-    </LinearLayout>
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:backgroundTint="#9C27B0"
+        android:text="@string/random" />
 
     <ScrollView
         android:layout_width="match_parent"

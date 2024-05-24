@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     input.error = "Please enter a number"
                     return
                 }
+                if (input.text.toString().toInt() >999999) {
+                    input.error = "Number should be less than 999999"
+                    return
+                }
                 num = input.text.toString().toInt()
                 hideKeyboard()
                 showProperties()
@@ -74,10 +78,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.clear_properties ->{
                 input.setText("")
                 display.text = ""
+                input.error = null
                 showKeyboard(input)
             }
             R.id.random_properties ->{
-                num = Random.nextInt(1, 9999)
+                num = Random.nextInt(1, 999999)
                 input.setText(num.toString())
                 hideKeyboard()
                 showProperties()
