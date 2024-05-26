@@ -11,7 +11,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlin.math.pow
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var clear: Button
     private lateinit var random: Button
     private lateinit var display: TextView
-    private var num = 1
+    private var num = 1L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,46 +59,38 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun generateRandomNumber(): Int {
-        return when (val numDigits = Random.nextInt(1, 10)) { // Random number of digits from 1 to 9
-            1 -> Random.nextInt(1, 10) // 1-digit numbers
-            else -> {
-                val min = 10.0.pow((numDigits - 1).toDouble()).toInt()
-                val max = 10.0.pow(numDigits.toDouble()).toInt() - 1
-                Random.nextInt(min, max)
-            }
+    private fun generateRandomNumber(): Long {
+        val randomLength = Random.nextInt(1, 11)
+        return Random.nextLong(1L, Math.pow(10.0, randomLength.toDouble()).toLong())
+    }
+
+    private fun isLong(s: String): Boolean {
+        return try {
+            s.toLong()
+            true
+        } catch (e: NumberFormatException) {
+            false
         }
     }
 
     override fun onClick(v: View?) {
-
         when(v?.id){
             R.id.show_properties ->{
-                fun isInteger(s: String): Boolean {
-                    return try {
-                        s.toInt()
-                        true
-                    } catch (e: NumberFormatException) {
-                        false
-                    }
-                }
-                if(!isInteger(input.text.toString())) {
-                    input.error = "Number should be less than 999999999"
+
+                if(!isLong(input.text.toString())) {
+                    input.error = "Max 10-digit supported"
                     return
                 }
-                if (input.text.toString().isEmpty()) {
-                    input.error = "Please enter a number"
+                val inputNumber = input.text.toString().toLong()
+                if (inputNumber <= 0) {
+                    input.error = "Number should be > 0"
                     return
                 }
-                if (input.text.toString().toInt() >999999999) {
-                    input.error = "Number should be less than 999999999"
+                if (inputNumber > 9999999999) {
+                    input.error = "Max 10-digit supported"
                     return
                 }
-                if (input.text.toString().toInt() <=0) {
-                    input.error = "Number should be greater than 0"
-                    return
-                }
-                num = input.text.toString().toInt()
+                num = inputNumber
                 hideKeyboard()
                 showProperties()
             }
