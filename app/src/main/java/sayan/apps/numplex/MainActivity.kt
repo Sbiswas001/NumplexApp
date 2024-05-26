@@ -2,18 +2,27 @@ package sayan.apps.numplex
 
 import android.content.Context
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import kotlin.random.Random
+import androidx.core.view.GravityCompat
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+
+
+class MainActivity : AppCompatActivity(), View.OnClickListener , NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var input: EditText
     private lateinit var showProperties: Button
@@ -21,11 +30,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var random: Button
     private lateinit var display: TextView
     private var num = 1
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.nav_main_activity)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -41,6 +52,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         showProperties.setOnClickListener(this)
         clear.setOnClickListener(this)
         random.setOnClickListener(this)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener(this)
+
     }
 
     private fun hideKeyboard() {
@@ -147,4 +173,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         result += "$num is ${if(isDuckNumber(num)) "a Duck" else "not a Duck"} number\n"
         display.text = result
     }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_numplex -> {
+                Toast.makeText(this, "You are in Numplex", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_numbers -> {
+                Toast.makeText(this, "You are in Classifications", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_logout -> {
+                Toast.makeText(this, "You are in LogOut", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_feedback -> {
+                Toast.makeText(this, "You are in Feedback", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_update -> {
+                Toast.makeText(this, "You are in Update", Toast.LENGTH_SHORT).show()
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
 }
