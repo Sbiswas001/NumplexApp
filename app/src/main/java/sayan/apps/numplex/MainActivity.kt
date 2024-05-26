@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 if(!isInteger(input.text.toString())) {
-                    input.error = "Number should be less than 999999"
+                    input.error = "Number should be less than 999999999"
                     return
                 }
                 if (input.text.toString().isEmpty()) {
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     return
                 }
                 if (input.text.toString().toInt() >999999999) {
-                    input.error = "Number should be less than 999999"
+                    input.error = "Number should be less than 999999999"
                     return
                 }
                 if (input.text.toString().toInt() <=0) {
