@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.math.pow
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -59,6 +60,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun generateRandomNumber(): Int {
+        return when (val numDigits = Random.nextInt(1, 10)) { // Random number of digits from 1 to 9
+            1 -> Random.nextInt(1, 10) // 1-digit numbers
+            else -> {
+                val min = 10.0.pow((numDigits - 1).toDouble()).toInt()
+                val max = 10.0.pow(numDigits.toDouble()).toInt() - 1
+                Random.nextInt(min, max)
+            }
+        }
+    }
+
     override fun onClick(v: View?) {
 
         when(v?.id){
@@ -79,7 +91,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     input.error = "Please enter a number"
                     return
                 }
-                if (input.text.toString().toInt() >999999) {
+                if (input.text.toString().toInt() >999999999) {
                     input.error = "Number should be less than 999999"
                     return
                 }
@@ -98,7 +110,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 showKeyboard(input)
             }
             R.id.random_properties ->{
-                num = Random.nextInt(1, 999999)
+                num = generateRandomNumber()
                 input.setText(num.toString())
                 hideKeyboard()
                 showProperties()

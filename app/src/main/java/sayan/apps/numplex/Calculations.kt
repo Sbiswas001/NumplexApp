@@ -62,16 +62,24 @@ fun isPrimeNumber(n: Int): Boolean {
 fun primeFactors(n: Int): List<Int> {
     var num = n
     val factors = mutableListOf<Int>()
-    for (i in 2..num) {
-        if (isPrimeNumber(i)) {
-            while (num % i == 0) {
-                factors.add(i)
-                num /= i
-            }
+    while (num % 2 == 0) {
+        factors.add(2)
+        num /= 2
+    }
+    var i = 3
+    while (i * i <= num) {
+        while (num % i == 0) {
+            factors.add(i)
+            num /= i
         }
+        i += 2
+    }
+    if (num > 2) {
+        factors.add(num)
     }
     return factors
 }
+
 
 fun primeFactorization(n: Int): String {
     val factors = primeFactors(n)
@@ -85,13 +93,18 @@ fun primeFactorization(n: Int): String {
 
 fun factors(n: Int): List<Int> {
     val factors = mutableListOf<Int>()
-    for (i in 1..n) {
+    for (i in 1..sqrt(n.toDouble()).toInt()) {
         if (n % i == 0) {
             factors.add(i)
+            if (i != n / i) {
+                factors.add(n / i)
+            }
         }
     }
+    factors.sort()
     return factors
 }
+
 
 fun isNivenNumber(number: Int): Boolean = number % digitSum(number) == 0
 
@@ -234,17 +247,7 @@ fun isCircularPrimeNumber(number: Int): Boolean {
     return true
 }
 
-fun isFermatNumber(number: Int): Boolean {
-    if (number <= 0) return false
-    if (number == 3 || number == 5) return true
-
-    var s = 4
-    val m = (1 shl number) - 1 // Equivalent to 2^number - 1
-    repeat(number - 2) {
-        s = (s * s - 2) % m
-    }
-    return s == 0
-}
+fun isFermatNumber(number: Int) = setOf(3, 5, 17, 257, 65537).contains(number)
 
 fun isUglyNumber(number: Int): Boolean {
     if (number <= 0) return false

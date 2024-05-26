@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "578780761665",
+    "project_id": "numplex-8e2a2",
+    "storage_bucket": "numplex-8e2a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578780761665:android:6fd634d97e08564a61c0c0",
+        "android_client_info": {
+          "package_name": "sayan.apps.numplex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpu_3_FdXM59Rjc-8Ffdd6DTjQ1QFOgcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
