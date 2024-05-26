@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/classificationPage"
+    tools:context=".ClassificationsActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/primeNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prime Number"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:id="@+id/compositeNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Composite Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/nivenNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Niven Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/emirpNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emirp Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/abundantNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abundant Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/techNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tech Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/disariumNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Disarium Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/pronicNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pronic Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/automorphicNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Automorphic Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/kaprekarNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kaprekar Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/specialNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Special Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/lucasNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lucas Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/smithNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Smith Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/armstrongNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Armstrong Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/fermatNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fermat Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/uglyNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ugly Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/neonNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Neon Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/spyNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spy Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/happyNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Happy Number"
+                android:layout_marginHorizontal="15dp"/>
+
+            <Button
+                android:id="@+id/duckNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Duck Number"
+                android:layout_marginHorizontal="15dp"/>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
