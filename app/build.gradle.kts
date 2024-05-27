@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.androidx.appcompat)
+    implementation(libs.circleimageview)
     implementation(libs.material)
     implementation(libs.core.splashscreen)
     implementation(libs.androidx.activity)

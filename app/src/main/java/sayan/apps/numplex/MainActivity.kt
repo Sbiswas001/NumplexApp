@@ -4,16 +4,20 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.navigation.NavigationView
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var display: TextView
     private var num = 1L
     private var keepSplashScreenOn = true
+    private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +42,46 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayout)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = findViewById(R.id.drawerLayout)
+        val navView: NavigationView = findViewById(R.id.navView)
+        toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_numplex -> {
+                    Toast.makeText(applicationContext,"Clicked Numplex", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.nav_classifications -> {
+                    Toast.makeText(applicationContext,"Clicked Classifications", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.nav_update -> {
+                    Toast.makeText(applicationContext,"Clicked Update", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.nav_feedback -> {
+                    Toast.makeText(applicationContext,"Clicked Feedback", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.nav_logout -> {
+                    Toast.makeText(applicationContext,"Clicked Logout", Toast.LENGTH_SHORT).show()
+                }
+            }
+            true
+        }
+
+
         input = findViewById(R.id.input_number)
         showProperties = findViewById(R.id.show_properties)
         clear = findViewById(R.id.clear_properties)
@@ -52,6 +92,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         showProperties.setOnClickListener(this)
         clear.setOnClickListener(this)
         random.setOnClickListener(this)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun hideKeyboard() {

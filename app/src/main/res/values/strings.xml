@@ -4,4 +4,15 @@
     <string name="clear">CLEAR</string>
     <string name="random">Random</string>
     <string name="enter_a_number">Enter a number</string>
+    <string name="user_name">User</string>
+    <string name="user_email">Email</string>
+    <string name="menu_numplex">Numplex</string>
+    <string name="menu_classifications">Classifications</string>
+    <string name="menu_updates">Updates</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_logout">Logout</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+
 </resources>
