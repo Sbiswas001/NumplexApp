@@ -2,6 +2,8 @@ package sayan.apps.numplex
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -9,8 +11,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlin.math.pow
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -21,9 +25,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var random: Button
     private lateinit var display: TextView
     private var num = 1L
+    private var keepSplashScreenOn = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { keepSplashScreenOn }
+        Handler(Looper.getMainLooper()).postDelayed({
+            keepSplashScreenOn = false
+        }, 1600)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -61,7 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun generateRandomNumber(): Long {
         val randomLength = Random.nextInt(1, 11)
-        return Random.nextLong(1L, Math.pow(10.0, randomLength.toDouble()).toLong())
+        return Random.nextLong(1L, 10.0.pow(randomLength.toDouble()).toLong())
     }
 
     private fun isLong(s: String): Boolean {

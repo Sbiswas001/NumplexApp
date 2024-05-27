@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Numplex.MySplash" theme="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.Numplex</item>
+        <item name="windowSplashScreenAnimationDuration">1600</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_anim</item>
+    </style>
+</resources>

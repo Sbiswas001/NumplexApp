@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "sayan.apps.numplex"
-        minSdk = 29
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -41,8 +41,8 @@ dependencies {
 
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.core.splashscreen)
     implementation(libs.androidx.activity)
-    implementation(libs.lottie)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
