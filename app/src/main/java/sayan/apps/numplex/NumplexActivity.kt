@@ -2,7 +2,6 @@ package sayan.apps.numplex
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -24,20 +23,19 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.replace
 import sayan.apps.numplex.databinding.ActivityMainBinding
 import sayan.apps.numplex.ui.ClassificationFragment
 import sayan.apps.numplex.ui.NumplexFragment
 
 
-class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ NavigationView.OnNavigationItemSelectedListener {
+class NumplexActivity : AppCompatActivity(), View.OnClickListener {
 
-    /*private lateinit var input: EditText
+    private lateinit var input: EditText
     private lateinit var showProperties: Button
     private lateinit var clear: Button
     private lateinit var random: Button
     private lateinit var display: TextView
-    private var num = 1*/
+    private var num = 1
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var toolBar: Toolbar
@@ -45,16 +43,17 @@ class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ Navigation
 
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override public fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawer_layout)) { v, insets ->
+        setContentView(R.layout.fragment_numplex)
+        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.numplex_fragment)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-        /*input = findViewById(R.id.input_number)
+        }*/
+
+        input = findViewById(R.id.input_number)
         showProperties = findViewById(R.id.show_properties)
         clear = findViewById(R.id.clear_properties)
         random = findViewById(R.id.random_properties)
@@ -63,41 +62,12 @@ class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ Navigation
         input.setOnClickListener(this)
         showProperties.setOnClickListener(this)
         clear.setOnClickListener(this)
-        random.setOnClickListener(this)*/
-
-
-
-        drawerLayout = findViewById(R.id.drawer_layout)
-        navView = findViewById(R.id.nav_view)
-        toolBar = findViewById(R.id.toolbar)
-
-        setSupportActionBar(toolBar)
-
-
-        val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolBar , R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        val numplexFragment = NumplexFragment()
-        loadFragment(numplexFragment)
-
-        /*val intent = Intent(this, NumplexActivity::class.java)
-
-        startActivity(intent)*/
-
-
-        navView.setNavigationItemSelectedListener(this)
-
-        drawerLayout.closeDrawer(GravityCompat.START)
+        random.setOnClickListener(this)
 
 
     }
-/*
+
+
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = currentFocus
@@ -201,48 +171,10 @@ class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ Navigation
         result += "$num is ${if(isHappyNumber(num)) "a Happy" else "not a Happy"} number\n"
         result += "$num is ${if(isDuckNumber(num)) "a Duck" else "not a Duck"} number\n"
         display.text = result
-    }*/
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_numplex -> {
-                val numplexFragment = NumplexFragment()
-                loadFragment(numplexFragment)
-                Toast.makeText(this, "You are in Numplex", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_numbers -> {
-                val classificationFragment = ClassificationFragment()
-                loadFragment(classificationFragment)
-                Toast.makeText(this, "You are in Classifications", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_logout -> {
-                Toast.makeText(this, "You are in LogOut", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_feedback -> {
-                Toast.makeText(this, "You are in Feedback", Toast.LENGTH_SHORT).show()
-            }
-            R.id.nav_update -> {
-                Toast.makeText(this, "You are in Update", Toast.LENGTH_SHORT).show()
-            }
-        }
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
     }
 
-    override public fun onBackPressed()
-    {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
 
-    private fun loadFragment(fragment: Fragment) {
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.container , fragment).commit()
-    }
+
 
 }
 

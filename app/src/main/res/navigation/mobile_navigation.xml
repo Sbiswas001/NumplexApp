@@ -5,21 +5,30 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="sayan.apps.numplex.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="sayan.apps.numplex.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/nav_numplex"
+        android:name="sayan.apps.numplex.ui.NumplexFragment"
+        android:label="@string/menu_numplex"
+        tools:layout="@layout/fragment_numplex" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="sayan.apps.numplex.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_classification"
+        android:name="sayan.apps.numplex.ui.ClassificationFragment"
+        android:label="@string/menu_Classifications"
+        tools:layout="@layout/fragment_classification" />
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="sayan.apps.numplex.ui.FeedbackFragment"
+        android:label="@string/menu_feedback"
+        tools:layout="@layout/fragment_feedback" />
+    <fragment
+        android:id="@+id/nav_update"
+        android:name="sayan.apps.numplex.ui.UpdateFragment"
+        android:label="@string/menu_updates"
+        tools:layout="@layout/fragment_update" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="sayan.apps.numplex.ui.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>
