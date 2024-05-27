@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "sayan.apps.numplex"
-        minSdk = 31
+        minSdk = 30
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
