@@ -4,7 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+
 import android.view.MenuItem
+
+import android.os.Handler
+import android.os.Looper
+
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -14,11 +19,18 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import kotlin.math.pow
+
 import kotlin.random.Random
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -37,16 +49,23 @@ class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ Navigation
     private lateinit var clear: Button
     private lateinit var random: Button
     private lateinit var display: TextView
+
     private var num = 1*/
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var toolBar: Toolbar
-
-
+    private var num = 1L
+    private var keepSplashScreenOn = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { keepSplashScreenOn }
+        Handler(Looper.getMainLooper()).postDelayed({
+            keepSplashScreenOn = false
+        }, 1600)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawer_layout)) { v, insets ->
@@ -114,35 +133,38 @@ class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ Navigation
         }
     }
 
-    override fun onClick(v: View?) {
+    private fun generateRandomNumber(): Long {
+        val randomLength = Random.nextInt(1, 11)
+        return Random.nextLong(1L, 10.0.pow(randomLength.toDouble()).toLong())
+    }
 
+    private fun isLong(s: String): Boolean {
+        return try {
+            s.toLong()
+            true
+        } catch (e: NumberFormatException) {
+            false
+        }
+    }
+
+    override fun onClick(v: View?) {
         when(v?.id){
             R.id.show_properties ->{
-                fun isInteger(s: String): Boolean {
-                    return try {
-                        s.toInt()
-                        true
-                    } catch (e: NumberFormatException) {
-                        false
-                    }
-                }
-                if(!isInteger(input.text.toString())) {
-                    input.error = "Number should be less than 999999"
+
+                if(!isLong(input.text.toString())) {
+                    input.error = "Max 10-digit supported"
                     return
                 }
-                if (input.text.toString().isEmpty()) {
-                    input.error = "Please enter a number"
+                val inputNumber = input.text.toString().toLong()
+                if (inputNumber <= 0) {
+                    input.error = "Number should be > 0"
                     return
                 }
-                if (input.text.toString().toInt() >999999) {
-                    input.error = "Number should be less than 999999"
+                if (inputNumber > 9999999999) {
+                    input.error = "Max 10-digit supported"
                     return
                 }
-                if (input.text.toString().toInt() <=0) {
-                    input.error = "Number should be greater than 0"
-                    return
-                }
-                num = input.text.toString().toInt()
+                num = inputNumber
                 hideKeyboard()
                 showProperties()
             }
@@ -153,7 +175,7 @@ class MainActivity : AppCompatActivity() , /*View.OnClickListener ,*/ Navigation
                 showKeyboard(input)
             }
             R.id.random_properties ->{
-                num = Random.nextInt(1, 999999)
+                num = generateRandomNumber()
                 input.setText(num.toString())
                 hideKeyboard()
                 showProperties()
