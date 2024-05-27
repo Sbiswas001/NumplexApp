@@ -1,0 +1,156 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="288dp"
+            android:height="288dp"
+            android:viewportWidth="288"
+            android:viewportHeight="288">
+            <group android:name="group">
+                <path
+                    android:name="path"
+                    android:pathData="M 90.99 209.07 L 90.99 78"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#FF5722"
+                    android:strokeWidth="12.4833"/>
+                <path
+                    android:name="path_1"
+                    android:pathData="M 120.33 84.24 L 181.5 84.24"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#4CAF50"
+                    android:strokeWidth="12.4833"/>
+                <path
+                    android:name="path_2"
+                    android:pathData="M 91.77 80.62 L 143.58 206.7"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#FF5722"
+                    android:strokeWidth="12.4833"/>
+                <path
+                    android:name="path_3"
+                    android:pathData="M 180.25 146.03 L 182.6 146.03 C 193.68 146.03 203.9 140.07 209.35 130.42 C 215.53 119.49 214.34 105.79 206.5 95.99 C 200.6 88.62 191.6 84.24 182.15 84.24 L 180.25 84.24"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#4CAF50"
+                    android:strokeWidth="12.4833"/>
+                <path
+                    android:name="path_4"
+                    android:pathData="M 144.67 209.07 L 144.67 132.93"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#FF5722"
+                    android:strokeWidth="12.4833"
+                    android:strokeLineJoin="bevel"/>
+                <path
+                    android:name="path_5"
+                    android:pathData="M 180.25 146.03 L 160.28 146.03"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#4CAF50"
+                    android:strokeWidth="12.4833"/>
+                <path
+                    android:name="path_6"
+                    android:pathData="M 144.36 102.97 L 164.09 133.4 L 124.63 133.4 L 144.36 102.97 Z"
+                    android:fillColor="#0066FF"/>
+                <path
+                    android:name="path_7"
+                    android:pathData="M 166.52 141.04 L 166.52 209.07"
+                    android:fillColor="#00000000"
+                    android:strokeColor="#4CAF50"
+                    android:strokeWidth="12.4833"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="path">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="400"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_4">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="800"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_5">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="800"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_7">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="1200"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_3">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathStart"
+                android:startOffset="400"
+                android:duration="400"
+                android:valueFrom="1"
+                android:valueTo="0"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_6">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillAlpha"
+                android:startOffset="1200"
+                android:duration="400"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+</animated-vector>
