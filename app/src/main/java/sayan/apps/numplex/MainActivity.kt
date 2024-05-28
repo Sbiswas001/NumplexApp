@@ -61,11 +61,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_update -> {
-                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Latest Version is already Installed !!", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.nav_feedback -> {
-                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
+                    replaceFragment(FeedbackFragment(), it.title.toString())
                 }
 
                 R.id.nav_logout -> {

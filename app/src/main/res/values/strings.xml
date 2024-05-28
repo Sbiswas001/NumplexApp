@@ -83,4 +83,11 @@
     <string name="tech_number_url">https://www.geeksforgeeks.org/check-whether-a-number-is-tech-number-or-not</string>
     <string name="special_number_url">https://www.javatpoint.com/special-number-in-java</string>
     <string name="ugly_number_url">https://www.geeksforgeeks.org/ugly-numbers/</string>
+
+    <string name="google_sign_in">Google Sign In</string>
+    <string name="feed_title">Your Feedback</string>
+    <string name="rate_tag">Please rate our app</string>
+    <string name="feed_tag">Your Feedback</string>
+    <string name="feed_hint">Tell us what you think</string>
+    <string name="submit_btn">Submit</string>
 </resources>
