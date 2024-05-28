@@ -1,5 +1,7 @@
 package sayan.apps.numplex
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,6 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_classifications, container, false)
     }
 
@@ -74,22 +75,44 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.primeNum -> showDefinition(getString(R.string.prime_number), "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.")
-            R.id.compositeNum -> showDefinition("Composite Number", "A composite number is a positive integer that has at least one positive divisor other than one or itself.")
-            R.id.nivenNum -> showDefinition("Niven Number", "A Niven number is a number that is divisible by the sum of its digits.")
-            // Add more cases for each button with their respective definitions
-            // ...
+            R.id.primeNum -> showDefinition(getString(R.string.prime_number), getString(R.string.prime_number_definition), getString(R.string.prime_number_url))
+            R.id.compositeNum -> showDefinition(getString(R.string.composite_number), getString(R.string.composite_number_definition), getString(R.string.composite_number_url))
+            R.id.nivenNum -> showDefinition(getString(R.string.niven_number), getString(R.string.niven_number_definition), getString(R.string.niven_number_url))
+            R.id.emirpNum -> showDefinition(getString(R.string.emirp_number), getString(R.string.emirp_number_definition), getString(R.string.emirp_number_url))
+            R.id.abundantNum -> showDefinition(getString(R.string.abundant_number), getString(R.string.abundant_number_definition), getString(R.string.abundant_number_url))
+            R.id.techNum -> showDefinition(getString(R.string.tech_number), getString(R.string.tech_number_definition), getString(R.string.tech_number_url))
+            R.id.disariumNum -> showDefinition(getString(R.string.disarium_number), getString(R.string.disarium_number_definition), getString(R.string.disarium_number_url))
+            R.id.pronicNum -> showDefinition(getString(R.string.pronic_number), getString(R.string.pronic_number_definition), getString(R.string.pronic_number_url))
+            R.id.automorphicNum -> showDefinition(getString(R.string.automorphic_number), getString(R.string.automorphic_number_definition), getString(R.string.automorphic_number_url))
+            R.id.kaprekarNum -> showDefinition(getString(R.string.kaprekar_number), getString(R.string.kaprekar_number_definition), getString(R.string.kaprekar_number_url))
+            R.id.specialNum -> showDefinition(getString(R.string.special_number), getString(R.string.special_number_definition), getString(R.string.special_number_url))
+            R.id.lucasNum -> showDefinition(getString(R.string.lucas_number), getString(R.string.lucas_number_definition), getString(R.string.lucas_number_url))
+            R.id.smithNum -> showDefinition(getString(R.string.smith_number), getString(R.string.smith_number_definition), getString(R.string.smith_number_url))
+            R.id.armstrongNum -> showDefinition(getString(R.string.armstrong_number), getString(R.string.armstrong_number_definition), getString(R.string.armstrong_number_url))
+            R.id.fermatNum -> showDefinition(getString(R.string.fermat_number), getString(R.string.fermat_number_definition), getString(R.string.fermat_number_url))
+            R.id.uglyNum -> showDefinition(getString(R.string.ugly_number), getString(R.string.ugly_number_definition), getString(R.string.ugly_number_url))
+            R.id.neonNum -> showDefinition(getString(R.string.neon_number), getString(R.string.neon_number_definition), getString(R.string.neon_number_url))
+            R.id.spyNum -> showDefinition(getString(R.string.spy_number), getString(R.string.spy_number_definition), getString(R.string.spy_number_url))
+            R.id.happyNum -> showDefinition(getString(R.string.happy_number), getString(R.string.happy_number_definition), getString(R.string.happy_number_url))
+            R.id.duckNum -> showDefinition(getString(R.string.duck_number), getString(R.string.duck_number_definition), getString(R.string.duck_number_url))
+
         }
     }
 
-    private fun showDefinition(title: String, message: String) {
+    private fun showDefinition(title: String, message: String, url: String) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(title)
             .setMessage(message)
             .setPositiveButton("Ok") { dialog, _ ->
                 dialog.dismiss()
             }
+            .setNegativeButton("Visit Website") { dialog, _ ->
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+                dialog.dismiss()
+            }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
+
 }
