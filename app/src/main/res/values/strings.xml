@@ -83,6 +83,4 @@
     <string name="tech_number_url">https://www.geeksforgeeks.org/check-whether-a-number-is-tech-number-or-not</string>
     <string name="special_number_url">https://www.javatpoint.com/special-number-in-java</string>
     <string name="ugly_number_url">https://www.geeksforgeeks.org/ugly-numbers/</string>
-
-
 </resources>

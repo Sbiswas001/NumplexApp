@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Set default fragment
         if (savedInstanceState == null) {
             replaceFragment(NumplexFragment(), getString(R.string.numplex))
             navView.setCheckedItem(R.id.nav_numplex)
@@ -62,15 +61,15 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_update -> {
-                    Toast.makeText(applicationContext, "Clicked Update", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.nav_feedback -> {
-                    Toast.makeText(applicationContext, "Clicked Feedback", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
                 }
 
                 R.id.nav_logout -> {
-                    Toast.makeText(applicationContext, "Clicked Logout", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
                 }
             }
             true

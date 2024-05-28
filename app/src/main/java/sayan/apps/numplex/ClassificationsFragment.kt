@@ -51,26 +51,15 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
         val happyNum: Button = view.findViewById(R.id.happyNum)
         val duckNum: Button = view.findViewById(R.id.duckNum)
 
-        primeNum.setOnClickListener(this)
-        compositeNum.setOnClickListener(this)
-        nivenNum.setOnClickListener(this)
-        emirpNum.setOnClickListener(this)
-        abundantNum.setOnClickListener(this)
-        techNum.setOnClickListener(this)
-        disariumNum.setOnClickListener(this)
-        pronicNum.setOnClickListener(this)
-        automorphicNum.setOnClickListener(this)
-        kaprekarNum.setOnClickListener(this)
-        specialNum.setOnClickListener(this)
-        lucasNum.setOnClickListener(this)
-        smithNum.setOnClickListener(this)
-        armstrongNum.setOnClickListener(this)
-        fermatNum.setOnClickListener(this)
-        uglyNum.setOnClickListener(this)
-        neonNum.setOnClickListener(this)
-        spyNum.setOnClickListener(this)
-        happyNum.setOnClickListener(this)
-        duckNum.setOnClickListener(this)
+        val buttons = arrayOf(primeNum, compositeNum, nivenNum, emirpNum, abundantNum, techNum, disariumNum, pronicNum,
+            automorphicNum, kaprekarNum, specialNum, lucasNum, smithNum, armstrongNum, fermatNum, uglyNum, neonNum, spyNum,
+            happyNum, duckNum
+        )
+
+        for (button in buttons) {
+            button.setOnClickListener(this)
+        }
+
     }
 
     override fun onClick(v: View?) {
@@ -95,7 +84,6 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
             R.id.spyNum -> showDefinition(getString(R.string.spy_number), getString(R.string.spy_number_definition), getString(R.string.spy_number_url))
             R.id.happyNum -> showDefinition(getString(R.string.happy_number), getString(R.string.happy_number_definition), getString(R.string.happy_number_url))
             R.id.duckNum -> showDefinition(getString(R.string.duck_number), getString(R.string.duck_number_definition), getString(R.string.duck_number_url))
-
         }
     }
 
