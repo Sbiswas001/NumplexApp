@@ -13,4 +13,26 @@
     <string name="menu_logout">Logout</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="numplex">Numplex</string>
+    <string name="prime_number">Prime Number</string>
+    <string name="composite_number">Composite Number</string>
+    <string name="niven_number">Niven Number</string>
+    <string name="emirp_number">Emirp Number</string>
+    <string name="abundant_number">Abundant Number</string>
+    <string name="tech_number">Tech Number</string>
+    <string name="disarium_number">Disarium Number</string>
+    <string name="pronic_number">Pronic Number</string>
+    <string name="automorphic_number">Automorphic Number</string>
+    <string name="kaprekar_number">Kaprekar Number</string>
+    <string name="special_number">Special Number</string>
+    <string name="lucas_number">Lucas Number</string>
+    <string name="smith_number">Smith Number</string>
+    <string name="armstrong_number">Armstrong Number</string>
+    <string name="fermat_number">Fermat Number</string>
+    <string name="ugly_number">Ugly Number</string>
+    <string name="neon_number">Neon Number</string>
+    <string name="spy_number">Spy Number</string>
+    <string name="happy_number">Happy Number</string>
+    <string name="duck_number">Duck Number</string>
 </resources>
