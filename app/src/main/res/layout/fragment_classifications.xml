@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClassificationsFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/classificationPage"
+        tools:context=".ClassificationsActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/primeNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prime_number"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="20dp"/>
+
+                <Button
+                    android:id="@+id/compositeNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/composite_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/nivenNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/niven_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/emirpNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/emirp_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/abundantNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/abundant_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/techNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tech_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/disariumNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/disarium_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/pronicNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pronic_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/automorphicNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/automorphic_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/kaprekarNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kaprekar_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/specialNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/special_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/lucasNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lucas_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/smithNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smith_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/armstrongNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/armstrong_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/fermatNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fermat_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/uglyNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ugly_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/neonNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/neon_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/spyNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spy_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/happyNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/happy_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+                <Button
+                    android:id="@+id/duckNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/duck_number"
+                    android:layout_marginHorizontal="15dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
