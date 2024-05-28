@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         // Set default fragment
         if (savedInstanceState == null) {
             replaceFragment(NumplexFragment(), getString(R.string.numplex))
+            navView.setCheckedItem(R.id.nav_numplex)
         }
 
         navView.setNavigationItemSelectedListener {
