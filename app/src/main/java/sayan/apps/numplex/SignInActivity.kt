@@ -19,13 +19,11 @@ class SignInActivity : AppCompatActivity() {
     companion object {
         private const val RC_SIGN_IN = 9001
     }
-
     private lateinit var auth: FirebaseAuth
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_signin)
 
         auth = FirebaseAuth.getInstance()

@@ -71,9 +71,6 @@ class MainActivity : AppCompatActivity() {
             navView.setCheckedItem(R.id.nav_numplex)
         }
 
-//        username.findViewById<TextView>(R.id.user_name)
-//        email.findViewById<TextView>(R.id.user_email)
-//        profileImage.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.user_image)
         val headerView = navView.getHeaderView(0)
         username = headerView.findViewById(R.id.user_name)
         email = headerView.findViewById(R.id.user_email)
@@ -118,10 +115,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_logout -> {
-
                     signOutAndStartSignInActivity()
-
-                    /*Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()*/
                 }
             }
             true
@@ -153,5 +147,4 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
-
 }
