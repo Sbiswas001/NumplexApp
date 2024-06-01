@@ -14,11 +14,22 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import android.content.Intent
+
 class MainActivity : AppCompatActivity() {
 
     private var keepSplashScreenOn = true
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +80,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_logout -> {
-                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
+
+                    signOutAndStartSignInActivity()
+
+                    /*Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()*/
                 }
             }
             true
@@ -91,4 +105,15 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun signOutAndStartSignInActivity() {
+        mAuth.signOut()
+
+        mGoogleSignInClient.signOut().addOnCompleteListener(this) {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
 }
