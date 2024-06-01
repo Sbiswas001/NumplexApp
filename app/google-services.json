@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "578780761665",
+    "firebase_url": "https://numplex-8e2a2-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "numplex-8e2a2",
     "storage_bucket": "numplex-8e2a2.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "sayan.apps.numplex"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "578780761665-bcotkbe6lo0od6afgjtb2bijjhrp749p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sayan.apps.numplex",
+            "certificate_hash": "218b5cad4856b80f0f7c3d9e698fcabf0162adb5"
+          }
+        },
+        {
+          "client_id": "578780761665-7q8feduii0i8sj6501i2tp99u7r45f3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCpu_3_FdXM59Rjc-8Ffdd6DTjQ1QFOgcY"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578780761665-7q8feduii0i8sj6501i2tp99u7r45f3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

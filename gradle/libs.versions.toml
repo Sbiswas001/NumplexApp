@@ -11,6 +11,11 @@ activity = "1.9.0"
 constraintlayout = "2.1.4"
 androidx_core_splashscreen = "1.0.1"
 circleimageview = "3.1.0"
+firebase-bom = "33.1.0"
+firebase-auth-ktx = "23.0.0"
+play-services-auth = "21.2.0"
+google-services = "4.3.15"
+picasso = "2.71828"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -23,8 +28,13 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx_core_splashscreen" }
 circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth-ktx" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }

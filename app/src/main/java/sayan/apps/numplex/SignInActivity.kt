@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,8 +30,6 @@ class SignInActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-
-
         val currentUser = auth.currentUser
 
         if (currentUser != null) {
@@ -40,10 +39,7 @@ class SignInActivity : AppCompatActivity() {
             finish() // finish the current activity to prevent the user from coming back to the SignInActivity using the back button
         }
 
-
-
-
-        val signInButton = findViewById<Button>(R.id.signInButton)
+        val signInButton = findViewById<ImageButton>(R.id.google_sign_in_button)
         signInButton.setOnClickListener {
             signIn()
         }
