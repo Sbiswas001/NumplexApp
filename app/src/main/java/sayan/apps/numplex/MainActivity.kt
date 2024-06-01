@@ -13,12 +13,26 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
+import android.widget.TextView
+import com.squareup.picasso.Picasso
+
 
 class MainActivity : AppCompatActivity() {
 
     private var keepSplashScreenOn = true
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var username : TextView
+    private lateinit var email : TextView
+    private lateinit var profileImage : de.hdodenhof.circleimageview.CircleImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +50,14 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        mAuth = FirebaseAuth.getInstance()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
         drawerLayout = findViewById(R.id.drawerLayout)
         val navView: NavigationView = findViewById(R.id.navView)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
@@ -48,6 +70,33 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(NumplexFragment(), getString(R.string.numplex))
             navView.setCheckedItem(R.id.nav_numplex)
         }
+
+//        username.findViewById<TextView>(R.id.user_name)
+//        email.findViewById<TextView>(R.id.user_email)
+//        profileImage.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.user_image)
+        val headerView = navView.getHeaderView(0)
+        username = headerView.findViewById(R.id.user_name)
+        email = headerView.findViewById(R.id.user_email)
+        profileImage = headerView.findViewById(R.id.user_image)
+
+
+
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        if (account != null) {
+            val personName = account.displayName
+            val personEmail = account.email
+            val personPhoto = account.photoUrl?.toString()
+
+            username.text = personName
+            email.text = personEmail
+            personPhoto?.let {
+                Picasso.get()
+                    .load(it)
+                    .into(profileImage)
+            }
+        }
+
+
 
         navView.setNavigationItemSelectedListener {
             it.isChecked = true
@@ -69,7 +118,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_logout -> {
-                    Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()
+
+                    signOutAndStartSignInActivity()
+
+                    /*Toast.makeText(applicationContext, "Coming soon!", Toast.LENGTH_SHORT).show()*/
                 }
             }
             true
@@ -91,4 +143,15 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun signOutAndStartSignInActivity() {
+        mAuth.signOut()
+
+        mGoogleSignInClient.signOut().addOnCompleteListener(this) {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
 }
