@@ -124,7 +124,7 @@ class NumplexFragment : Fragment(), View.OnClickListener {
         result+= "Number of digits is ${digitCount(num)}\n"
         result+= "Sum of digits is ${digitSum(num)}\n"
         result+= "Reverse of number is ${reverse(num)}\n"
-        result+= "Prime factorization is ${primeFactorization(num)}\n"
+        result+= "Prime factorization of number is ${primeFactorization(num)}\n"
         result+= "Prime factors are ${primeFactors(num).toSet().joinToString(separator = ", ")}\n"
         result+= "Number of prime factors is ${primeFactors(num).toSet().size}\n"
         result+= "Sum of prime factors is ${primeFactors(num).toSet().sum()}\n"
