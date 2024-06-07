@@ -25,21 +25,25 @@ import com.squareup.picasso.Picasso
 class MainActivity : AppCompatActivity() {
 
     private var keepSplashScreenOn = true
+    private var isSignedIn = true
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var username : TextView
-    private lateinit var email : TextView
-    private lateinit var profileImage : de.hdodenhof.circleimageview.CircleImageView
+    private lateinit var username: TextView
+    private lateinit var email: TextView
+    private lateinit var profileImage: de.hdodenhof.circleimageview.CircleImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val splashScreen = installSplashScreen()
         splashScreen.setKeepOnScreenCondition { keepSplashScreenOn }
         Handler(Looper.getMainLooper()).postDelayed({
-            keepSplashScreenOn = false
+            if (!isSignedIn)
+                goToSignInActivity()
+            else
+                keepSplashScreenOn = false
         }, 2000)
 
         enableEdgeToEdge()
@@ -80,22 +84,22 @@ class MainActivity : AppCompatActivity() {
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
         if (account == null) {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (!keepSplashScreenOn)
+                goToSignInActivity()
+            isSignedIn = false
+            return
         }
-        if (account != null) {
-            val personName = account.displayName
-            val personEmail = account.email
-            val personPhoto = account.photoUrl?.toString()
+        val personName = account.displayName
+        val personEmail = account.email
+        val personPhoto = account.photoUrl?.toString()
 
-            username.text = personName
-            email.text = personEmail
-            personPhoto?.let {
-                Picasso.get()
-                    .load(it)
-                    .into(profileImage)
-            }
+        username.text = personName
+        email.text = personEmail
+        personPhoto?.let {
+            Picasso.get()
+                .load(it)
+                .into(profileImage)
+
         }
 
 
@@ -125,6 +129,12 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    private fun goToSignInActivity() {
+        val intent = Intent(this, SignInActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun replaceFragment(fragment: Fragment, title: String) {
