@@ -1,0 +1,41 @@
+name: Build Application
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '**/*.gradle.kts'
+      - 'app/src/**'
+      - '.github/workflows/build.yml'
+  push:
+    branches: [ master ]
+    paths:
+      - '**/*.gradle.kts'
+      - 'app/src/**'
+      - '.github/workflows/build.yml'
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17 and Gradle cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Make Gradle executable
+        run: chmod +x gradlew
+
+      - name: Build Application with Gradle
+        run: ./gradlew assembleDebug
+
+      - name: Upload the app-debug.apk artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
