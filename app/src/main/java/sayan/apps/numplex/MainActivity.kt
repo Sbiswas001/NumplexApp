@@ -21,7 +21,6 @@ import android.content.Intent
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 
-
 class MainActivity : AppCompatActivity() {
 
     private var keepSplashScreenOn = true
@@ -101,8 +100,6 @@ class MainActivity : AppCompatActivity() {
                 .into(profileImage)
 
         }
-
-
 
         navView.setNavigationItemSelectedListener {
             it.isChecked = true
