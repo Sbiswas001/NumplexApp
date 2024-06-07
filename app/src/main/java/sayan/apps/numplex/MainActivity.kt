@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         splashScreen.setKeepOnScreenCondition { keepSplashScreenOn }
         Handler(Looper.getMainLooper()).postDelayed({
             keepSplashScreenOn = false
-        }, 1600)
+        }, 2000)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -79,6 +79,11 @@ class MainActivity : AppCompatActivity() {
 
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
+        if (account == null) {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         if (account != null) {
             val personName = account.displayName
             val personEmail = account.email
