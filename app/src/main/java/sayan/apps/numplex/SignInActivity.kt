@@ -1,14 +1,13 @@
 package sayan.apps.numplex
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -25,6 +24,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_signin)
+        enableEdgeToEdge()
 
         auth = FirebaseAuth.getInstance()
 
@@ -37,7 +37,7 @@ class SignInActivity : AppCompatActivity() {
             finish() // finish the current activity to prevent the user from coming back to the SignInActivity using the back button
         }
 
-        val signInButton = findViewById<ImageButton>(R.id.google_sign_in_button)
+        val signInButton = findViewById<SignInButton>(R.id.google_sign_in_button)
         signInButton.setOnClickListener {
             signIn()
         }
