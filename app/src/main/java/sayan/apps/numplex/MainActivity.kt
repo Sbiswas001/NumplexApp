@@ -1,9 +1,12 @@
 package sayan.apps.numplex
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -11,14 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.google.android.material.navigation.NavigationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import android.content.Intent
-import android.widget.TextView
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
@@ -62,6 +64,10 @@ class MainActivity : AppCompatActivity() {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         drawerLayout = findViewById(R.id.drawerLayout)
+        drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+            // Close the keyboard when the drawer starts moving
+            override fun onDrawerStateChanged(newState: Int) = closeKeyboard()
+        })
         val navView: NavigationView = findViewById(R.id.navView)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -113,7 +119,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_update -> {
-                    Toast.makeText(applicationContext, "Latest Version is already Installed !!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "Latest Version is already Installed !!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 R.id.nav_feedback -> {
@@ -125,6 +135,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+    }
+
+    private fun closeKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
