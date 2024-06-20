@@ -47,6 +47,12 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
                 val feedbackText = feedbackEditText.text.toString()
                 val ratingValue = ratingBar.rating.toDouble()
 
+                if (ratingValue < 1) {
+                    Toast.makeText(requireActivity(), "Please provide a rating!", Toast.LENGTH_SHORT)
+                        .show()
+                    return
+                }
+
                 val account = GoogleSignIn.getLastSignedInAccount(requireActivity())
                 val userId = account?.email ?: "defaultUserId"
 
