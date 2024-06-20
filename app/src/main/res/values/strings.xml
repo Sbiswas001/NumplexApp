@@ -92,4 +92,5 @@
     <string name="submit_btn">Submit</string>
     <string name="default_web_client_id">578780761665-7q8feduii0i8sj6501i2tp99u7r45f3i.apps.googleusercontent.com
 </string>
+    <string name="empty_text" />
 </resources>

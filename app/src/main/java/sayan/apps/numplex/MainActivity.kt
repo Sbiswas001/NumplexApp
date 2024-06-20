@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private var keepSplashScreenOn = true
     private var isSignedIn = true
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
         username = headerView.findViewById(R.id.user_name)
         email = headerView.findViewById(R.id.user_email)
         profileImage = headerView.findViewById(R.id.user_image)
-
 
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
