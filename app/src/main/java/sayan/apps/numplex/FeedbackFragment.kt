@@ -10,8 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Toast
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.database.DatabaseReference
@@ -34,12 +32,6 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.feedbackPage)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         feedbackEditText = view.findViewById(R.id.fb_feedback)
         ratingBar = view.findViewById(R.id.fb_rating)
@@ -64,15 +56,18 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
                 ratingMap["feedbackText"] = feedbackText
 
                 database.child("ratings").push().setValue(ratingMap)
-                Toast.makeText(requireActivity(), "Thank you for the feedback!", Toast.LENGTH_SHORT).show()
-                feedbackEditText.setText("")
+                Toast.makeText(requireActivity(), "Thank you for the feedback!", Toast.LENGTH_SHORT)
+                    .show()
+                feedbackEditText.setText(getString(R.string.empty_text))
                 ratingBar.rating = 0f
                 hideKeyboard()
             }
         }
     }
+
     private fun hideKeyboard() {
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = requireActivity().currentFocus
         if (view == null) {
             view = View(requireContext())

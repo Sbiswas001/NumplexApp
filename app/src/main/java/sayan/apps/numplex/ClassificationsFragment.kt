@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 
 class ClassificationsFragment : Fragment(), View.OnClickListener {
@@ -23,12 +21,6 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.classificationPage)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         val primeNum: Button = view.findViewById(R.id.primeNum)
         val compositeNum: Button = view.findViewById(R.id.compositeNum)
@@ -51,9 +43,27 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
         val happyNum: Button = view.findViewById(R.id.happyNum)
         val duckNum: Button = view.findViewById(R.id.duckNum)
 
-        val buttons = arrayOf(primeNum, compositeNum, nivenNum, emirpNum, abundantNum, techNum, disariumNum, pronicNum,
-            automorphicNum, kaprekarNum, specialNum, lucasNum, smithNum, armstrongNum, fermatNum, uglyNum, neonNum, spyNum,
-            happyNum, duckNum
+        val buttons = arrayOf(
+            primeNum,
+            compositeNum,
+            nivenNum,
+            emirpNum,
+            abundantNum,
+            techNum,
+            disariumNum,
+            pronicNum,
+            automorphicNum,
+            kaprekarNum,
+            specialNum,
+            lucasNum,
+            smithNum,
+            armstrongNum,
+            fermatNum,
+            uglyNum,
+            neonNum,
+            spyNum,
+            happyNum,
+            duckNum
         )
 
         for (button in buttons) {
@@ -63,27 +73,126 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.primeNum -> showDefinition(getString(R.string.prime_number), getString(R.string.prime_number_definition), getString(R.string.prime_number_url))
-            R.id.compositeNum -> showDefinition(getString(R.string.composite_number), getString(R.string.composite_number_definition), getString(R.string.composite_number_url))
-            R.id.nivenNum -> showDefinition(getString(R.string.niven_number), getString(R.string.niven_number_definition), getString(R.string.niven_number_url))
-            R.id.emirpNum -> showDefinition(getString(R.string.emirp_number), getString(R.string.emirp_number_definition), getString(R.string.emirp_number_url))
-            R.id.abundantNum -> showDefinition(getString(R.string.abundant_number), getString(R.string.abundant_number_definition), getString(R.string.abundant_number_url))
-            R.id.techNum -> showDefinition(getString(R.string.tech_number), getString(R.string.tech_number_definition), getString(R.string.tech_number_url))
-            R.id.disariumNum -> showDefinition(getString(R.string.disarium_number), getString(R.string.disarium_number_definition), getString(R.string.disarium_number_url))
-            R.id.pronicNum -> showDefinition(getString(R.string.pronic_number), getString(R.string.pronic_number_definition), getString(R.string.pronic_number_url))
-            R.id.automorphicNum -> showDefinition(getString(R.string.automorphic_number), getString(R.string.automorphic_number_definition), getString(R.string.automorphic_number_url))
-            R.id.kaprekarNum -> showDefinition(getString(R.string.kaprekar_number), getString(R.string.kaprekar_number_definition), getString(R.string.kaprekar_number_url))
-            R.id.specialNum -> showDefinition(getString(R.string.special_number), getString(R.string.special_number_definition), getString(R.string.special_number_url))
-            R.id.lucasNum -> showDefinition(getString(R.string.lucas_number), getString(R.string.lucas_number_definition), getString(R.string.lucas_number_url))
-            R.id.smithNum -> showDefinition(getString(R.string.smith_number), getString(R.string.smith_number_definition), getString(R.string.smith_number_url))
-            R.id.armstrongNum -> showDefinition(getString(R.string.armstrong_number), getString(R.string.armstrong_number_definition), getString(R.string.armstrong_number_url))
-            R.id.fermatNum -> showDefinition(getString(R.string.fermat_number), getString(R.string.fermat_number_definition), getString(R.string.fermat_number_url))
-            R.id.uglyNum -> showDefinition(getString(R.string.ugly_number), getString(R.string.ugly_number_definition), getString(R.string.ugly_number_url))
-            R.id.neonNum -> showDefinition(getString(R.string.neon_number), getString(R.string.neon_number_definition), getString(R.string.neon_number_url))
-            R.id.spyNum -> showDefinition(getString(R.string.spy_number), getString(R.string.spy_number_definition), getString(R.string.spy_number_url))
-            R.id.happyNum -> showDefinition(getString(R.string.happy_number), getString(R.string.happy_number_definition), getString(R.string.happy_number_url))
-            R.id.duckNum -> showDefinition(getString(R.string.duck_number), getString(R.string.duck_number_definition), getString(R.string.duck_number_url))
+        when (v?.id) {
+            R.id.primeNum -> showDefinition(
+                getString(R.string.prime_number),
+                getString(R.string.prime_number_definition),
+                getString(R.string.prime_number_url)
+            )
+
+            R.id.compositeNum -> showDefinition(
+                getString(R.string.composite_number),
+                getString(R.string.composite_number_definition),
+                getString(R.string.composite_number_url)
+            )
+
+            R.id.nivenNum -> showDefinition(
+                getString(R.string.niven_number),
+                getString(R.string.niven_number_definition),
+                getString(R.string.niven_number_url)
+            )
+
+            R.id.emirpNum -> showDefinition(
+                getString(R.string.emirp_number),
+                getString(R.string.emirp_number_definition),
+                getString(R.string.emirp_number_url)
+            )
+
+            R.id.abundantNum -> showDefinition(
+                getString(R.string.abundant_number),
+                getString(R.string.abundant_number_definition),
+                getString(R.string.abundant_number_url)
+            )
+
+            R.id.techNum -> showDefinition(
+                getString(R.string.tech_number),
+                getString(R.string.tech_number_definition),
+                getString(R.string.tech_number_url)
+            )
+
+            R.id.disariumNum -> showDefinition(
+                getString(R.string.disarium_number),
+                getString(R.string.disarium_number_definition),
+                getString(R.string.disarium_number_url)
+            )
+
+            R.id.pronicNum -> showDefinition(
+                getString(R.string.pronic_number),
+                getString(R.string.pronic_number_definition),
+                getString(R.string.pronic_number_url)
+            )
+
+            R.id.automorphicNum -> showDefinition(
+                getString(R.string.automorphic_number),
+                getString(R.string.automorphic_number_definition),
+                getString(R.string.automorphic_number_url)
+            )
+
+            R.id.kaprekarNum -> showDefinition(
+                getString(R.string.kaprekar_number),
+                getString(R.string.kaprekar_number_definition),
+                getString(R.string.kaprekar_number_url)
+            )
+
+            R.id.specialNum -> showDefinition(
+                getString(R.string.special_number),
+                getString(R.string.special_number_definition),
+                getString(R.string.special_number_url)
+            )
+
+            R.id.lucasNum -> showDefinition(
+                getString(R.string.lucas_number),
+                getString(R.string.lucas_number_definition),
+                getString(R.string.lucas_number_url)
+            )
+
+            R.id.smithNum -> showDefinition(
+                getString(R.string.smith_number),
+                getString(R.string.smith_number_definition),
+                getString(R.string.smith_number_url)
+            )
+
+            R.id.armstrongNum -> showDefinition(
+                getString(R.string.armstrong_number),
+                getString(R.string.armstrong_number_definition),
+                getString(R.string.armstrong_number_url)
+            )
+
+            R.id.fermatNum -> showDefinition(
+                getString(R.string.fermat_number),
+                getString(R.string.fermat_number_definition),
+                getString(R.string.fermat_number_url)
+            )
+
+            R.id.uglyNum -> showDefinition(
+                getString(R.string.ugly_number),
+                getString(R.string.ugly_number_definition),
+                getString(R.string.ugly_number_url)
+            )
+
+            R.id.neonNum -> showDefinition(
+                getString(R.string.neon_number),
+                getString(R.string.neon_number_definition),
+                getString(R.string.neon_number_url)
+            )
+
+            R.id.spyNum -> showDefinition(
+                getString(R.string.spy_number),
+                getString(R.string.spy_number_definition),
+                getString(R.string.spy_number_url)
+            )
+
+            R.id.happyNum -> showDefinition(
+                getString(R.string.happy_number),
+                getString(R.string.happy_number_definition),
+                getString(R.string.happy_number_url)
+            )
+
+            R.id.duckNum -> showDefinition(
+                getString(R.string.duck_number),
+                getString(R.string.duck_number_definition),
+                getString(R.string.duck_number_url)
+            )
         }
     }
 
@@ -102,5 +211,4 @@ class ClassificationsFragment : Fragment(), View.OnClickListener {
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
-
 }
