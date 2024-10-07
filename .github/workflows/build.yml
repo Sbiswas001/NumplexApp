@@ -7,12 +7,14 @@ on:
     paths:
       - '**/*.gradle.kts'
       - 'app/src/**'
+      - 'gradle/**'
       - '.github/workflows/build.yml'
   push:
     branches: [ master ]
     paths:
       - '**/*.gradle.kts'
       - 'app/src/**'
+      - 'gradle/**'
       - '.github/workflows/build.yml'
 
 jobs:
