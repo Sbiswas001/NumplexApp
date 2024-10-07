@@ -2,6 +2,7 @@ package sayan.apps.numplex
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CancellationSignal
 import android.os.Handler
 import android.os.Looper
 import android.view.MenuItem
@@ -14,24 +15,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.credentials.ClearCredentialStateRequest
+import androidx.credentials.CredentialManager
+import androidx.credentials.CredentialManagerCallback
+import androidx.credentials.exceptions.ClearCredentialException
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
+    private val credentialManager: CredentialManager = CredentialManager.create(this)
+    private val mAuth = FirebaseAuth.getInstance()
     private var keepSplashScreenOn = true
     private var isSignedIn = true
+
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
-
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var mAuth: FirebaseAuth
     private lateinit var username: TextView
     private lateinit var email: TextView
     private lateinit var profileImage: de.hdodenhof.circleimageview.CircleImageView
@@ -55,14 +58,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        mAuth = FirebaseAuth.getInstance()
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
         drawerLayout = findViewById(R.id.drawerLayout)
         drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             // Close the keyboard when the drawer starts moving
@@ -85,8 +80,7 @@ class MainActivity : AppCompatActivity() {
         email = headerView.findViewById(R.id.user_email)
         profileImage = headerView.findViewById(R.id.user_image)
 
-
-        val account = GoogleSignIn.getLastSignedInAccount(this)
+        val account = mAuth.currentUser
         if (account == null) {
             if (!keepSplashScreenOn)
                 goToSignInActivity()
@@ -170,10 +164,22 @@ class MainActivity : AppCompatActivity() {
     private fun signOutAndStartSignInActivity() {
         mAuth.signOut()
 
-        mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        // Clear the credential state
+        val clearCredentialsRequest = ClearCredentialStateRequest()
+        credentialManager.clearCredentialStateAsync(
+            clearCredentialsRequest,
+            CancellationSignal(),
+            Executors.newSingleThreadExecutor(),
+            object :
+                CredentialManagerCallback<Void?, ClearCredentialException> {
+                override fun onResult(result: Void?) {
+                    goToSignInActivity()
+                }
+
+                override fun onError(e: ClearCredentialException) {
+                    goToSignInActivity()
+                }
+            }
+        )
     }
 }
