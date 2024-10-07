@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -53,7 +53,7 @@ class FeedbackFragment : Fragment(), View.OnClickListener {
                     return
                 }
 
-                val account = GoogleSignIn.getLastSignedInAccount(requireActivity())
+                val account = FirebaseAuth.getInstance().currentUser
                 val userId = account?.email ?: "defaultUserId"
 
                 val ratingMap = HashMap<String, Any>()

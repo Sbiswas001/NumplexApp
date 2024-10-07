@@ -2,23 +2,27 @@ package sayan.apps.numplex
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CancellationSignal
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import androidx.credentials.CredentialManager
+import androidx.credentials.CredentialManagerCallback
+import androidx.credentials.CustomCredential
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.GetCredentialResponse
+import androidx.credentials.exceptions.GetCredentialException
 import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.ApiException
+import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import java.util.concurrent.Executors
+
 
 class SignInActivity : AppCompatActivity() {
-
-
-    companion object {
-        private const val RC_SIGN_IN = 9001
-    }
-    private lateinit var auth: FirebaseAuth
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,15 +30,14 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
         enableEdgeToEdge()
 
-        auth = FirebaseAuth.getInstance()
-
         val currentUser = auth.currentUser
 
         if (currentUser != null) {
             // The user is already signed in, navigate to MainActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // finish the current activity to prevent the user from coming back to the SignInActivity using the back button
+            // Finish the current activity to prevent the user from coming back to the SignInActivity using the back button
+            finish()
         }
 
         val signInButton = findViewById<SignInButton>(R.id.google_sign_in_button)
@@ -44,26 +47,53 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
+        val signInWithGoogleOption =
+            GetSignInWithGoogleOption.Builder(getString(R.string.default_web_client_id))
+                .build()
+
+        val getCredentialRequest = GetCredentialRequest.Builder()
+            .addCredentialOption(signInWithGoogleOption)
             .build()
 
-        val googleSignInClient = GoogleSignIn.getClient(this, gso)
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        val credentialManager: CredentialManager = CredentialManager.create(this)
+        credentialManager.getCredentialAsync(
+            this,
+            getCredentialRequest,
+            CancellationSignal(),
+            Executors.newSingleThreadExecutor(),
+            object : CredentialManagerCallback<GetCredentialResponse, GetCredentialException> {
+                override fun onResult(result: GetCredentialResponse) {
+                    handleSignIn(result)
+                }
+
+                override fun onError(e: GetCredentialException) {
+                    this@SignInActivity.runOnUiThread {
+                        Toast.makeText(
+                            this@SignInActivity,
+                            "Google sign in failed: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+    fun handleSignIn(result: GetCredentialResponse) {
+        when (val credential = result.credential) {
+            is CustomCredential -> {
+                if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                    try {
+                        val googleIdTokenCredential = GoogleIdTokenCredential
+                            .createFrom(credential.data)
+                        firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
+                    } catch (e: GoogleIdTokenParsingException) {
+                        Toast.makeText(
+                            this,
+                            "Google sign in failed: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         }
     }
@@ -74,7 +104,8 @@ class SignInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT)
+                        .show()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
