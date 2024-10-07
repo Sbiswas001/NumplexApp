@@ -52,7 +52,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth.ktx)
-    implementation(libs.play.services.auth)
     implementation(libs.picasso)
     implementation(libs.credentials)
     implementation(libs.credentials.play.services)
