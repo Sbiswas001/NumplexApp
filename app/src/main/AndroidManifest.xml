@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Numplex">
         <activity
-            android:name=".SignInActivity"
+            android:name=".ui.activity.SignInActivity"
             android:exported="true">
 
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Numplex.MySplash">
             <intent-filter>

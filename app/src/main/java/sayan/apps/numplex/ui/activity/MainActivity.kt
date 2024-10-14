@@ -1,4 +1,4 @@
-package sayan.apps.numplex
+package sayan.apps.numplex.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -24,6 +24,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import sayan.apps.numplex.R
+import sayan.apps.numplex.ui.fragment.ClassificationsFragment
+import sayan.apps.numplex.ui.fragment.FeedbackFragment
+import sayan.apps.numplex.ui.fragment.NumplexFragment
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
