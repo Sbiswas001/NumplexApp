@@ -1,4 +1,4 @@
-package sayan.apps.numplex
+package sayan.apps.numplex.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -18,6 +18,7 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import sayan.apps.numplex.R
 import java.util.concurrent.Executors
 
 

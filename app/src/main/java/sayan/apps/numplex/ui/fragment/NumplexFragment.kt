@@ -1,4 +1,4 @@
-package sayan.apps.numplex
+package sayan.apps.numplex.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,39 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import sayan.apps.numplex.R
+import sayan.apps.numplex.decimalToBin
+import sayan.apps.numplex.decimalToHex
+import sayan.apps.numplex.decimalToOct
+import sayan.apps.numplex.digitCount
+import sayan.apps.numplex.digitSum
+import sayan.apps.numplex.factors
+import sayan.apps.numplex.isAbundantNumber
+import sayan.apps.numplex.isArmstrongNumber
+import sayan.apps.numplex.isAutomorphicNumber
+import sayan.apps.numplex.isCircularPrimeNumber
+import sayan.apps.numplex.isDisariumNumber
+import sayan.apps.numplex.isDuckNumber
+import sayan.apps.numplex.isEmirpNumber
+import sayan.apps.numplex.isEven
+import sayan.apps.numplex.isFermatNumber
+import sayan.apps.numplex.isFibonacciNumber
+import sayan.apps.numplex.isHappyNumber
+import sayan.apps.numplex.isKaprekarNumber
+import sayan.apps.numplex.isLucasNumber
+import sayan.apps.numplex.isNeonNumber
+import sayan.apps.numplex.isNivenNumber
+import sayan.apps.numplex.isPalindrome
+import sayan.apps.numplex.isPrimeNumber
+import sayan.apps.numplex.isPronicNumber
+import sayan.apps.numplex.isSmithNumber
+import sayan.apps.numplex.isSpecialNumber
+import sayan.apps.numplex.isSpyNumber
+import sayan.apps.numplex.isTechNumber
+import sayan.apps.numplex.isUglyNumber
+import sayan.apps.numplex.primeFactorization
+import sayan.apps.numplex.primeFactors
+import sayan.apps.numplex.reverse
 import kotlin.math.pow
 import kotlin.random.Random
 

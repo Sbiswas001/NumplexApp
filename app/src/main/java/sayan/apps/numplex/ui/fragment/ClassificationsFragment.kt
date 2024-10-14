@@ -1,4 +1,4 @@
-package sayan.apps.numplex
+package sayan.apps.numplex.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import sayan.apps.numplex.R
 
 class ClassificationsFragment : Fragment(), View.OnClickListener {
 
