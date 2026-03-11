@@ -13,6 +13,7 @@ properties.
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
+- [Contributors](#contributors)
 
 ## Features
 
@@ -73,3 +74,17 @@ For questions, suggestions, or feedback, please open an issue on GitHub or conta
 
 - **Email:** sbiswas001.tech@gmail.com
 - **GitHub:** [Sbiswas001](https://github.com/Sbiswas001)
+
+## Contributors
+
+We thank all the amazing people who have contributed to this project.  
+Interested in contributing? Please see the [Contributing](#contributing) section above.
+
+[![Contributors](https://contrib.rocks/image?repo=Sbiswas001/NumplexApp)](https://github.com/Sbiswas001/NumplexApp/graphs/contributors)
+
+### Individual Contributors
+
+- **Sayan Biswas** - [GitHub](https://github.com/Sbiswas001)
+- **Ankan Pal** - [GitHub](https://github.com/itsyourap)
+- **Sayan Guha** - [GitHub](https://github.com/SayanGuha04)
+- **Arkapravo Roy** - [GitHub](https://github.com/SilentAssasin10)
